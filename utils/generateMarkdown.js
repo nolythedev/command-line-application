@@ -1,8 +1,15 @@
 // function to generate markdown for README
+const licenses = require("./licenses");
+
 function generateMarkdown(data) {
+  const selectedLicense = data.license.toLowerCase();
+
+    // Retrieve the license details based on the selected license
+  const { badge, title, coverage } = licenses[selectedLicense];
+
   return `
 
-  ${data.badge}
+  ${badge} 
   
   # ${data.title}
 
@@ -31,10 +38,17 @@ function generateMarkdown(data) {
 
   ## Tests
 
-  ${data.contribution}
+  ${data.tests}
+
+  ## License
+
+  ${title}
+  ${coverage}
 
   ## Questions
-  ${data.user}
+
+  For any additional questions, please contact me below:
+  [GitHub Profile](https://github.com//${data.user})
 `;
 }
 

@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require('path');
 const inquirer = require("inquirer");
+const ora = require("ora");
 const generateMarkdown = require("./utils/generateMarkdown");
 const licenses = require("./utils/licenses")
 
@@ -51,33 +52,44 @@ const questions = [
         when: (answers) => answers.has_tests === true
     },
     {
-        type: "confirm",
-        name: "has_license",
-        message: "Would you like to add a license to your project?",
-    },
-    {
         type: "rawlist",
         name: "license",
         message: "Please select a license for your project:",
-        choices: ['Apache', 'Creative Commons', 'Eclipse', "IBM", "MIT"]
+        choices: ['Apache', 'Creative Commons', 'Eclipse', "IBM", "MIT"],
+        default: "MIT",
     },
 ];
 
 
 // function to write README file
 function writeToFile(fileName, data) {
+    const spinner = ora({
+        spinner: 'hearts',
+        text: 'Creating your README file...'
+    }).start();
+
+    setTimeout(() => {
+        fs.writeFile(fileName, data, err => {
+            if (err) {
+                console.error(err);
+                spinner.fail('Failed to write file');
+            } else {
+                spinner.succeed('File written successfully');
+            }
+        });
+    }, 3000);
 }
 
 // function to initialize program
 function init() {
-    //for of loop through questions
-    //inquirer.prompt(questions)
-
     inquirer.prompt(questions)
         .then(answers => {
-            console.log(answers);
+            const markdown = generateMarkdown(answers);
+            writeToFile('README.md', markdown);
         })
-
+        .catch(error => {
+            console.error(error);
+        });
 }
 
 // function call to initialize program
