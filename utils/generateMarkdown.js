@@ -26,7 +26,7 @@ function generateMarkdown(data) {
 
   ## Installation
 
-  ${data.installation}
+  ${data.instructions.split(',').map(instruction => `\t* ${instruction.trim()}`).join('\n')}
 
   ## Usage
 
@@ -34,20 +34,21 @@ function generateMarkdown(data) {
 
   ## Contributing
 
-  ${data.contribution}
+  ${data.has_contribution ? data.contribution : 'No contribution guidelines provided.'}
 
   ## Tests
 
-  ${data.tests}
+  ${data.has_tests ? data.tests : 'No test instructions provided.'}
 
   ## License
 
-  ${title}
+  ${title} <br>
   ${coverage}
 
   ## Questions
 
-  For any additional questions, please contact me below:
+  For any additional questions, please contact me below: <br>
+  ${data.user_email} <br>
   [GitHub Profile](https://github.com//${data.user})
 `;
 }
