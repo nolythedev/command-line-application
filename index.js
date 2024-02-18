@@ -3,7 +3,6 @@ const path = require('path');
 const inquirer = require("inquirer");
 const ora = require("ora");
 const generateMarkdown = require("./utils/generateMarkdown");
-const licenses = require("./utils/licenses")
 
 // array of questions for user
 const questions = [
