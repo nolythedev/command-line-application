@@ -3,9 +3,9 @@ const path = require('path');
 const inquirer = require("inquirer");
 const ora = require("ora");
 const generateMarkdown = require("./utils/generateMarkdown");
-const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // check that email includes @ and dot
 
-function checkEmpty(input) {
+function checkEmpty(input) { // ensure input responses are given and not empty or less than 2 chars
     if (input.trim() === "") {
         return "Please give a response";
     } else if (input.length <= 2) {
@@ -61,6 +61,20 @@ const questions = [
         name: "instructions",
         message: "Give your project some installation instructions",
         suffix: " <separate multiple instructions with a comma> :",
+        validate: checkEmpty
+    },
+    {
+        type: "confirm",
+        name: "has_usage",
+        message: "Would you like to add usage guidelines?",
+        
+    },
+    {
+        type: "input",
+        name: "usage",
+        message: "Give your project some usage instructions",
+        suffix: " <separate multiple instructions with a comma> :",
+        validate: checkEmpty
     },
     {
         type: "confirm",
@@ -73,7 +87,8 @@ const questions = [
         name: "contribution",
         message: "Give your project some contribution guidelines:",
         suffix: " <separate multiple contributions with a comma> :",
-        when: (answers) => answers.has_contribution === true
+        when: (answers) => answers.has_contribution === true,
+        validate: checkEmpty
     },
     {
         type: "confirm",
@@ -86,7 +101,8 @@ const questions = [
         name: "tests",
         message: "Give your project some test instructions:",
         suffix: " <separate multiple test instructions with a comma> :",
-        when: (answers) => answers.has_tests === true
+        when: (answers) => answers.has_tests === true,
+        validate: checkEmpty
     },
     {
         type: "rawlist",
@@ -101,7 +117,7 @@ const questions = [
 // function to write README file
 function writeToFile(fileName, data) {
     const spinner = ora({
-        spinner: 'hearts',
+        spinner: 'runner',
         text: 'Creating your README file...'
     }).start();
 

@@ -2,45 +2,49 @@
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
   
-  # title
+  # Lorem Ipsum Generator
 
   ## Description
 
-  desc
+  A JavaScript app that allows you to generate Lorem Ipsum
 
   ## Table of contents
 
   * [Installation](#installation)
   * [Usage](#usage)
-  * [Credits](#credits)
+  * [Contributing](#contributing)
   * [License](#license)
+  * [Tests](#tests)
+  * [Questions](#questions)
 
   ## Installation
 
-  * add to git
-  * push to git
-  * call the git
-  * cry with git
+* cd ../lorem
+* npm i
+* npm start
 
-  ## Usage
+## Usage
 
-  undefined
+* Use fairly
+* Use comments
+* Share around
 
-  ## Contributing
+## Contributing
 
-  No contribution guidelines provided.
+* Contribution is welcome
 
-  ## Tests
+## Tests
 
-  No test instructions provided.
+No test instructions provided.
+
 
   ## License
 
-  MIT License <br>
+  MIT License: <br>
   The MIT License is a permissive open-source software license that allows you to use, modify, and distribute the software for any purpose, with minimal restrictions.
 
   ## Questions
 
   For any additional questions, please contact me below: <br>
-  noly@mail.com <br>
-  [GitHub Profile](https://github.com//noly)
+  noly@gotmail.com <br>
+  [GitHub Profile](https://github.com//nolythedev)
